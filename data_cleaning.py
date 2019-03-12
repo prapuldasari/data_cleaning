@@ -129,3 +129,29 @@ def data_stats(df, target_variable, strip_string, toFloat, impCol, outlierCheck,
     print ("The features which are having correlation are {}".format(indexes))
     print ('Heatmap for the correlations')
     sns.heatmap(l) #gives the plot if required
+    
+    #Checking for the distribution of both the test and train datasets:
+    #Here we are using handy spark module for plotting the distribution of each variable for both trianig and test datasets
+    #It will take a bit of time depending on the features present
+    (trainData, testData) = df.randomSplit([0.7, 0.3])
+    hdf1 = trainData.toHandy()
+    hdf2 = testData.toHandy()
+    columnList = [item[0] for item in df.dtypes if (item[1].startswith('float') or item[1].startswith('double'))]
+    for c in columnList:
+        fig, axs = plt.subplots(1,2)
+        hdf1.cols[c].hist(ax=axs[0])
+        hdf2.cols[c].hist(ax=axs[1])
+    
+    (trainData, testData) = self.df.randomSplit([0.7, 0.3])
+    #Checking for the distribution of all variables over the training and testing datasets
+    #We need to convert them into pandas dataframes for plotting them using sns
+    trainDatapd= trainData.toPandas()
+    testDatapd= testData.toPandas()
+    numerics = ['int16', 'int32', 'int64', 'float16', 'float32', 'float64']
+    trainDatapd= trainDatapd.dropna()
+    testDatapd= testDatapd.dropna()
+    for i,c in enumerate(trainDatapd.select_dtypes(include=numerics).columns):
+        plt.figure(i)
+        sns.distplot(trainDatapd[c])
+        sns.distplot(testDatapd[c]) 
+    
