@@ -142,8 +142,8 @@ def data_stats(df, target_variable, strip_string, toFloat, impCol, outlierCheck,
         hdf1.cols[c].hist(ax=axs[0])
         hdf2.cols[c].hist(ax=axs[1])
     
-    (trainData, testData) = self.df.randomSplit([0.7, 0.3])
-    #Checking for the distribution of all variables over the training and testing datasets
+    (trainData, testData) = df.randomSplit([0.7, 0.3])
+        #Checking for the distribution of all variables over the training and testing datasets
     #We need to convert them into pandas dataframes for plotting them using sns
     trainDatapd= trainData.toPandas()
     testDatapd= testData.toPandas()
@@ -154,4 +154,38 @@ def data_stats(df, target_variable, strip_string, toFloat, impCol, outlierCheck,
         plt.figure(i)
         sns.distplot(trainDatapd[c])
         sns.distplot(testDatapd[c]) 
+
+    #Checking for the distribution of the target varaible for categorical variables this shows the plots for both training and testing datasets
+    for c in checkCateg['check_categ']:
+        print ('Distribution of target variables classes over {}'. format(c))
+        testDatapd1= testDatapd.groupby(target_variable)[c].value_counts()
+        datatest = testDatapd1.to_frame(name='number')
+        datatest = datatest.reset_index()
+        datatest1=datatest[datatest[target_variable]==1]
+        datatest0=datatest[datatest[target_variable]==0]
+        datatest1 = pd.pivot_table(datatest1, values='number',index=target_variable ,columns=c)
+        datatest0 = pd.pivot_table(datatest0, values='number',index=target_variable ,columns=c)
+        datatest1.plot(kind= 'bar', ax= plt.subplot(2,2,1));
+        plt.title('{}- {}1'.format(c, target_variable));
+        plt.legend(loc=2, prop={'size': 6})
+        datatest0.plot(kind= 'bar', ax= plt.subplot(2,2,2));
+        plt.title('{}- {}0'.format(c, target_variable));
+        plt.legend(loc=2, prop={'size': 6})
+        trainDatapd1= trainDatapd.groupby(target_variable)[c].value_counts()
+        datatrain = trainDatapd1.to_frame(name='number')
+        datatrain = datatrain.reset_index()
+        datatrain1=datatrain[datatrain.Class==1]
+        datatrain0=datatrain[datatrain.Class==0]
+        datatrain1 = pd.pivot_table(datatrain1, values='number',index=target_variable,columns=c)
+        datatrain0 = pd.pivot_table(datatrain0, values='number',index=target_variable,columns=c)
+        datatrain1.plot(kind= 'bar', ax= plt.subplot(2,2,3));
+        plt.title('{}- {}1'.format(c, target_variable));
+        plt.legend(loc=2, prop={'size': 6})
+        datatrain0.plot(kind= 'bar', ax= plt.subplot(2,2,4));
+        plt.title('{}- {}1'.format(c, target_variable));
+        plt.subplots_adjust(wspace=0.3, hspace= 0.7)
+        plt.legend(loc=2, prop={'size': 6})
+        plt.show()
+
+    
     
