@@ -3,7 +3,7 @@
 """
 Created on Tue Mar 12 12:57:18 2019
 
-@author: prapuldasari
+@author: prapuldasari12
 """
 
 import findspark
@@ -76,6 +76,7 @@ def data_stats(df, target_variable, strip_string, toFloat, impCol, outlierCheck,
         print ('The feature {} has more than 70 missing values'.format(k))
     print ('Lets drop these rows')
     reduce(DataFrame.drop, nullColumns, df)
+    print ('this is just for testing')
 
     #function for checking if important  column in the nullColumns:
     for i in impCol['imp_Col']:
