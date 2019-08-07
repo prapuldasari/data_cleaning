@@ -7,6 +7,7 @@ Created on Tue Mar 12 12:57:18 2019
 """
 
 # testnig if its triggtring or not
+# is it working 
 
 import findspark
 findspark.init()
