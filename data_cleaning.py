@@ -6,6 +6,8 @@ Created on Tue Mar 12 12:57:18 2019
 @author: prapuldasari
 """
 
+# testnig if its triggtring or not
+
 import findspark
 findspark.init()
 import pandas as pd
