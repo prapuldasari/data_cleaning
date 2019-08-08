@@ -2,3 +2,4 @@ tm_thresholding.py
 data_cleaning.py
 Testing_df - Sheet1.csv
 ING.py
+Jenkinsfile
