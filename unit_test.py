@@ -1,4 +1,9 @@
 from tm_thresholding import ThresholdTuning
+from pyspark.sql import SparkSession
+from pyspark.sql.functions import col, lit, udf
+from pyspark.sql.types import FloatType
+
+spark = SparkSession.builder.appName('testing').getOrCreate()
 
 
 class Thresholdunit(object):
