@@ -3,7 +3,7 @@ import math
 from pyspark.sql.functions import col, udf, when, lit
 import pandas as pd
 import numpy as np
-import matplotlib.pyplot as plt
+# import matplotlib.pyplot as plt
 
 class ThresholdTuning(object):
     def __init__(self,spark= None, dataframe= None, MaxMisclassification_tolerence=0.05, expected_FalseAlertReduction = 0.4,buckets=10, MaxMisclassification_tolerence_local = None, NeedComputation = True, regulater_factor=0.0001,Target= None ,Probability = 'Prediction_Prob_1', prediction_col = 'prediction', recall_limit= 0.75):
@@ -121,11 +121,11 @@ class ThresholdTuning(object):
         print ('Best_L1_Threshold : {}' .format(self.best_threshold))
         print ('MissclassificationRate : {}'.format(MisclassificationRate))
         print ('Total Reduction : {}'.format(float(total_reduction)/length_prob))
-        plt.plot(prob_cutOffs[:-1], self.local_bad_recall_list,label='local_bad_recall')
-        plt.axvline(self.best_threshold, label='threshold', c='r')
-        plt.xticks(np.round(prob_cutOffs, 3))
-        plt.ylabel('percentage')
-        plt.legend()
+#         plt.plot(prob_cutOffs[:-1], self.local_bad_recall_list,label='local_bad_recall')
+#         plt.axvline(self.best_threshold, label='threshold', c='r')
+#         plt.xticks(np.round(prob_cutOffs, 3))
+#         plt.ylabel('percentage')
+#         plt.legend()
 
         #L2_Thresholding:
         prob_cutOffsr = prob_cutOffs
@@ -176,7 +176,7 @@ class ThresholdTuning(object):
         print (self.L1_Thresholds, self.L2_Thresholds)
         dataset = pd.DataFrame({'L1-Threshold':self.L1_Thresholds,'L2-Threshold':self.L2_Thresholds})
         df_threshold = self.spark.createDataFrame(dataset)
-        plt.axvline(L3, label='threshold', c='r')
+#         plt.axvline(L3, label='threshold', c='r')
 
 
         return df_threshold
