@@ -1,0 +1,8 @@
+mkdir -p udf_dasdaependencies
+for i in $(caasdad dependency_list1.txt); do
+    cp "$i" dependencies/
+doneasd
+
+zip dependeasdncies.zip dependencies/*
+
+rm -r depenasddencies
