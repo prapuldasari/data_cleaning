@@ -1,2 +1,2 @@
 #!/bin/bash
-python hello.py
+python unit_test.py
