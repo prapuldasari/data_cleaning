@@ -1,0 +1,40 @@
+---------------------------------------------------------
+D-Type Standard Engine
+Version 6.0.2.1 (May 2017)
+---------------------------------------------------------
+
+UID=67234-EVAL-22125
+TID=222565521-89359-1508553910-140730629518042
+
+WARNING: This is an evaluation version of D-Type Engine!
+You can use it only for your personal use and evaluation
+as described in the evaluation agreement. Any other use
+or distribution of this software is STRICTLY PROHIBITED
+and will be prosecuted to the maximum extent possible
+under the law.
+
+This message does not appear in a fully licensed version
+of D-Type Engine.
+
+---------------------------------------------------------
+
+---------------------------------------------------------
+D-Type Standard Engine
+Version 6.0.2.1 (May 2017)
+---------------------------------------------------------
+
+UID=67234-EVAL-22125
+TID=222566302-89359-300594334-140729421559247
+
+WARNING: This is an evaluation version of D-Type Engine!
+You can use it only for your personal use and evaluation
+as described in the evaluation agreement. Any other use
+or distribution of this software is STRICTLY PROHIBITED
+and will be prosecuted to the maximum extent possible
+under the law.
+
+This message does not appear in a fully licensed version
+of D-Type Engine.
+
+---------------------------------------------------------
+
