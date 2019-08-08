@@ -34,7 +34,7 @@ prediction_udf = udf(lambda x : prediction_(x))
 class Thresholdunit(object):
     def __init__(self,spark= spark,Target= None ,Probability = 'Prediction_Prob_1', prediction_col = 'prediction'):
         self.df= get_data()
-        self.threshold = ThresholdTuning(spark = spark,dataframe=df,MaxMisclassification_tolerence=0.04, expected_FalseAlertReduction = 0.4, 
+        self.threshold = ThresholdTuning(spark = spark,dataframe=self.df,MaxMisclassification_tolerence=0.04, expected_FalseAlertReduction = 0.4, 
                 buckets=10, MaxMisclassification_tolerence_local = None, NeedComputation = True, regulater_factor=0.0001,Target= 'Target',Probability = 'prop', recall_limit= 0.75, prediction_col = 'prediction' )
         
     def test_thresholds(self):
