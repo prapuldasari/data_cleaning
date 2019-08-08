@@ -4,10 +4,10 @@ from pyspark.sql.functions import col, lit, udf
 from pyspark.sql.types import FloatType
 
 spark = SparkSession.builder.appName('testing').getOrCreate()
-df= spark.read.csv('/Testing_df - Sheet1.csv', header = True, inferSchema = True)
+df= spark.read.csv('Testing_df - Sheet1.csv', header = True, inferSchema = True)
 
 
-
+# 
 # def get_data():
 #     list_= []
 #     for i in [float(j) / 100 for j in range(0, 100, 1)]:
