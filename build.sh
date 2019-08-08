@@ -1,4 +1,4 @@
-mkdir -p udf_dependencies
+mkdir -p dependencies
 for i in $(cat dependency_list1.txt); do
     cp "$i" dependencies/
 done
