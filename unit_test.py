@@ -5,6 +5,7 @@ from pyspark.sql.types import FloatType
 
 spark = SparkSession.builder.appName('testing').getOrCreate()
 df= spark.read.csv('Testing_df - Sheet1.csv', header = True, inferSchema = True)
+print ('now in master')
 
 
 ###testing
