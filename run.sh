@@ -1,2 +1,2 @@
 #!/bin/bash
-python unit_test.py
+python run_unit_test.py
