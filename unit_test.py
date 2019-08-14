@@ -1,22 +1,21 @@
 from tm_thresholding import ThresholdTuning
 from pyspark.sql import SparkSession
-from pyspark.sql.functions import col, lit, udf
-from pyspark.sql.types import FloatType
-
-spark = SparkSession.builder.appName('testing').getOrCreate()
-df= spark.read.csv('Testing_df - Sheet1.csv', header = True, inferSchema = True)
-print ('now in master new chnage here it')
-
-
-###testing
+from pyspark.sql.functions import col, lit
+from pyspark.sql import Row
+import unittest
 # def get_data():
-#     list_= []
-#     for i in [float(j) / 100 for j in range(0, 100, 1)]:
-#         list_.append(i) 
-#     df = spark.createDataFrame(list_, FloatType()).toDF('prop')
-#     df = df.withColumn('Target', target_udf(col('prop')))
-#     df = df.withColumn('Prediction', prediction_udf(col('prop')))
-#     return df
+#         list_= []
+#         for i in [float(j) / 100 for j in range(0, 100, 1)]:
+#             list_.append(i)
+#         print (list_)
+#         df = spark.createDataFrame(list_, FloatType()).toDF('prop')
+#         df = df.withColumn('Target', target_udf(col('prop')).cast(IntegerType()))
+#         df = df.withColumn('Prediction', prediction_udf(col('prop')))
+#         df = df.withColumn('Target', col('Target').cast(IntegerType()))
+#         df = df.withColumn('Prediction', col('Prediction').cast(IntegerType()))
+#         df = df.withColumn('prop', col('prop').cast(FloatType()))
+#         df.printSchema()
+#         return df
 # def target_(x):
 #     if x> 0.69:
 #         return 1
@@ -34,20 +33,44 @@ print ('now in master new chnage here it')
 #         return 0
 # prediction_udf = udf(lambda x : prediction_(x))
 
+spark = SparkSession.builder.appName('unit_test').getOrCreate()
+# df= spark.read.csv('Data/threshold_test_df.csv', header = True, inferSchema = True)
 
-class Thresholdunit(object):
-    def __init__(self,spark= spark,Target= None ,Probability = 'Prediction_Prob_1', prediction_col = 'prediction'):
-#         self.df= get_data()
-        self.threshold = ThresholdTuning(spark = spark,dataframe=df,MaxMisclassification_tolerence=0.04, expected_FalseAlertReduction = 0.4, 
-                buckets=10, MaxMisclassification_tolerence_local = None, NeedComputation = True, regulater_factor=0.0001,Target= 'Target',Probability = 'prop', recall_limit= 0.75, prediction_col = 'prediction' )
-        
+df= spark.read.csv('/Users/pk/Downloads/threshold_test_data.csv', header = True, inferSchema = True)
+
+
+
+class Thresholdunit(unittest.TestCase):
+    def __init__(self, spark=spark, Target=None, Probability='prop', prediction_col='prediction'):
+        #         self.df= get_data()
+        self.threshold = ThresholdTuning(spark=spark, dataframe=df, MaxMisclassification_tolerence=0.04,
+                                         expected_FalseAlertReduction=0.4,
+                                         buckets=10, MaxMisclassification_tolerence_local=None, NeedComputation=True,
+                                         regulater_factor=0.0001, Target='Target', Probability='prop',
+                                         recall_limit=0.75, prediction_col='prediction')
+        self.df_threshold = self.threshold.get_ProbThrehold_byBadRateDistribution()
+        self.df = df
+        self.Probability = self.threshold.Probability
+        self.Target = self.threshold.Target
+        self.MaxMisclassification_tolerence = self.threshold.MaxMisclassification_tolerence
+
+    def values(self):
+        assert self.df_threshold.collect()[0]['L1-Threshold'] < self.df_threshold.collect()[0]['L2-Threshold']
+
     def test_thresholds(self):
-        df_threshold =self.threshold.get_ProbThrehold_byBadRateDistribution()
-        assert df_threshold.collect()[0]['L1-Threshold'] == 0.41, "Should be 0.31"
-        assert df_threshold.collect()[0]['L2-Threshold'] == 0.71, "Should be 0.71"
+        assert self.df_threshold.collect()[0]['L1-Threshold'] == 0.41, "Should be 0.41"
+        assert self.df_threshold.collect()[0]['L2-Threshold'] == 0.71, "Should be 0.71"
+
+    def check_values(self):
+        assert (df.filter(col(self.Probability) <= self.df_threshold.collect()[0]['L1-Threshold']).count() >= 0.4)
+        df_new = self.df.filter(col(self.Probability) <= self.df_threshold.collect()[0]['L1-Threshold'])
+        miss_count = df_new.filter(col('Target') == 1).count()
+        miss_c = miss_count / self.df.count()
+        assert (miss_c <= self.MaxMisclassification_tolerence)
+
+    def all_combined(self):
+        self.test_thresholds()
+        self.check_values()
+        self.values()
 
 
-if __name__ == "__main__":
-    test_class =  Thresholdunit()
-    test_class.test_thresholds()
-    print("Everything passed")
