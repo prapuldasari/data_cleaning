@@ -1,3 +1,9 @@
+from pyspark.sql import SparkSession
+spark = SparkSession.builder.appName('unit_test').getOrCreate()
+import sys
+sys.append('.')
+df= spark.read.csv('threshold_test_df.csv', header = True, inferSchema = True)
+
 import os
 import sys
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
@@ -7,38 +13,10 @@ from pyspark.sql import SparkSession
 from pyspark.sql.functions import col, lit
 from pyspark.sql import Row
 import unittest
-# def get_data():
-#         list_= []
-#         for i in [float(j) / 100 for j in range(0, 100, 1)]:
-#             list_.append(i)
-#         print (list_)
-#         df = spark.createDataFrame(list_, FloatType()).toDF('prop')
-#         df = df.withColumn('Target', target_udf(col('prop')).cast(IntegerType()))
-#         df = df.withColumn('Prediction', prediction_udf(col('prop')))
-#         df = df.withColumn('Target', col('Target').cast(IntegerType()))
-#         df = df.withColumn('Prediction', col('Prediction').cast(IntegerType()))
-#         df = df.withColumn('prop', col('prop').cast(FloatType()))
-#         df.printSchema()
-#         return df
-# def target_(x):
-#     if x> 0.69:
-#         return 1
-#     elif x==0.62 or x==0.63 or x==0.55 or x==0.56 or x==0.57 or x==0.58 or x==0.59 or x==0.45 or x==0.46 or x==0.39:
-#         return 1
-#     else:
-#         return 0
-# target_udf = udf(lambda x : target_(x))
-# def prediction_(x):
-#     if x> 0.69:
-#         return 1
-#     elif x==0.62 or x==0.63 or x==0.55 or x==0.56 or x==0.57 or x==0.58 or x==0.59 or x==0.45 or x==0.47 or x==0.39:
-#         return 1
-#     else:
-#         return 0
-# prediction_udf = udf(lambda x : prediction_(x))
+
 
 spark = SparkSession.builder.appName('unit_test').getOrCreate()
-df= spark.read.csv('threshold_test_df.csv', header = True, inferSchema = True)
+# df= spark.read.csv('threshold_test_df.csv', header = True, inferSchema = True)
 
 # df= spark.read.csv('/Users/pk/Downloads/threshold_test_data.csv', header = True, inferSchema = True)
 
