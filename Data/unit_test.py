@@ -1,5 +1,6 @@
+
 import sys
-sys.path.append('.')
+sys.path.append('/folder')
 from folder.tm_threshold import ThresholdTuning
 from pyspark.sql import SparkSession
 from pyspark.sql.functions import col, lit
