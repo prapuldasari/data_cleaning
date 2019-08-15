@@ -1,3 +1,3 @@
 #!/bin/bash
-cd Data/
-python run_unit_test.py
+cd unit_test/
+python run_file.py
