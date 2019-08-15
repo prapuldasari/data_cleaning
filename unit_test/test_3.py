@@ -25,7 +25,7 @@ class TestAdd4(unittest.TestCase):
         Test the addition of two strings returns the two string as one
         concatenated string
         """
-        result = 'abc' + 'def'
+        result = 'abc' + 'defgch'
         self.assertEqual(result, 'abcdef')
        
        
