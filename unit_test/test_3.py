@@ -30,7 +30,7 @@ class TestAdd4(unittest.TestCase):
        
        
        
- class TestAdd5(unittest.TestCase):
+class TestAdd5(unittest.TestCase):
     """
     Test the add function from the mymath library
     """
