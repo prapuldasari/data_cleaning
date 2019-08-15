@@ -1,3 +1,5 @@
+import sys
+sys.append('.')
 from folder.tm_threshold import ThresholdTuning
 from pyspark.sql import SparkSession
 from pyspark.sql.functions import col, lit
