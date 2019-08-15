@@ -38,7 +38,7 @@ import unittest
 # prediction_udf = udf(lambda x : prediction_(x))
 
 spark = SparkSession.builder.appName('unit_test').getOrCreate()
-df= spark.read.csv('Data/threshold_test_df.csv', header = True, inferSchema = True)
+df= spark.read.csv('threshold_test_df.csv', header = True, inferSchema = True)
 
 # df= spark.read.csv('/Users/pk/Downloads/threshold_test_data.csv', header = True, inferSchema = True)
 
