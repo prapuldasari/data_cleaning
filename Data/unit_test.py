@@ -16,9 +16,9 @@ import unittest
 
 
 spark = SparkSession.builder.appName('unit_test').getOrCreate()
-df= spark.read.csv('https://raw.githubusercontent.com/prapuldasari/data_cleaning/master/Data/threshold_test_data.csv', header = True, inferSchema = True)
+# df= spark.read.csv('threshold_test_data.csv', header = True, inferSchema = True)
 
-# df= spark.read.csv('/Users/pk/Downloads/threshold_test_data.csv', header = True, inferSchema = True)
+df= spark.read.csv('/Users/pk/Downloads/threshold_test_data.csv', header = True, inferSchema = True)
 
 
 
