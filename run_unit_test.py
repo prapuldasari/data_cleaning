@@ -1,5 +1,5 @@
 import sys
-sys.path.append('/')
+sys.path.append('.')
 from unit_test import Thresholdunit
 
 class UnitTest(object):
