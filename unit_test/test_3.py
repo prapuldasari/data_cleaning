@@ -25,7 +25,7 @@ class TestAdd4(unittest.TestCase):
         Test the addition of two strings returns the two string as one
         concatenated string
         """
-        result = 'abc' + 'def'
+        result = 'abc' + 'deffsdf'
         self.assertEqual(result, 'abcdef')
        
        
@@ -46,7 +46,7 @@ class TestAdd5(unittest.TestCase):
         """
         Test that the addition of two floats returns the correct result
         """
-        result = 10.5+2
+        result = 10.5+562
         self.assertEqual(result, 12.5)
 
     def test_add_strings5(self):
