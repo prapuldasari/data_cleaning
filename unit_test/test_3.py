@@ -55,5 +55,5 @@ class TestAdd5(unittest.TestCase):
         concatenated string
         """
         result = 'abc' + 'def'
-        self.assertEqual(result, 'abcdef')
+        self.assertEqual(result, 'abcdfgshfef')
 
