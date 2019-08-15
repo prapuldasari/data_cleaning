@@ -1,10 +1,7 @@
 import unittest
 import sys
-# from test_1 import TestAdd
-# from test_3 import TestAdd4
 
 if __name__ == '__main__':
     testsuite = unittest.TestLoader().discover('.')
     unittest.TextTestRunner(verbosity=2, failfast= True).run(testsuite)
-#     unittest.main()
-#     sys.exit(not result.wasSuccessful())
+    sys.exit(not result.wasSuccessful())
