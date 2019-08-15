@@ -1,8 +1,8 @@
 from pyspark.sql import SparkSession
 spark = SparkSession.builder.appName('unit_test').getOrCreate()
-import sys
-sys.path.append('.')
-df= spark.read.csv('threshold_test_df.csv', header = True, inferSchema = True)
+# import sys
+# sys.path.append('.')
+# df= spark.read.csv('threshold_test_df.csv', header = True, inferSchema = True)
 
 import os
 import sys
