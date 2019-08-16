@@ -37,10 +37,10 @@ class TestAdd6(unittest.TestCase):
         self.MaxMisclassification_tolerence = self.threshold.MaxMisclassification_tolerence
 
     def values(self):
-        self.assert self.df_threshold.collect()[0]['L1-Threshold'] < self.df_threshold.collect()[0]['L2-Threshold']
+        self.assertTrue(self.df_threshold.collect()[0]['L1-Threshold'] < self.df_threshold.collect()[0]['L2-Threshold'])
 
     def test_thresholds(self):
-        self.assert self.df_threshold.collect()[0]['L1-Threshold'] == 0.41, "Should be 0.41"
+        self.assertTrue(self.df_threshold.collect()[0]['L1-Threshold'] == 0.41, "Should be 0.41")
         self.assert self.df_threshold.collect()[0]['L2-Threshold'] == 0.71, "Should be 0.71"
 
     def check_values(self):
