@@ -3,8 +3,14 @@ from pyspark.sql.functions import col, lit
 from pyspark.sql import Row
 import unittest
 import sys
-sys.path.append('.')
-from folder.tm_threshold import ThresholdTuning
+
+try:
+    from tm_thresholding import ThresholdTuning
+except:
+    import sys
+    sys.path.append('.')
+    from folder.tm_thresholding import ThresholdTuning
+
 
 spark = SparkSession.builder.appName('unit_test').getOrCreate()
 df = spark.read.csv('/Users/pk/Downloads/threshold_test_data.csv', header=True, inferSchema=True)
