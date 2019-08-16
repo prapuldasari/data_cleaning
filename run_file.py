@@ -28,4 +28,4 @@ print (__all__)
 
 from tm.tm_1 import *
 if __name__ == '__main__':
-     unittest.main()
+     unittest.main(verbosity= 1)
