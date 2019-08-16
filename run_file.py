@@ -7,8 +7,10 @@ __all__ = []
 
 import pkgutil
 import inspect
+print (sys.path)
+print (__all__)
 
-for loader, name, is_pkg in pkgutil.walk_packages([sys.path]):
+for loader, name, is_pkg in pkgutil.walk_packages(sys.path):
     module = loader.find_module(name).load_module(name)
 
     for name, value in inspect.getmembers(module):
