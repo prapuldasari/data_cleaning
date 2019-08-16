@@ -8,7 +8,7 @@ try:
     from tm_thresholding import ThresholdTuning
 except:
     import sys
-    sys.path.append('.')
+    sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
     from folder.tm_thresholding import ThresholdTuning
 
 
