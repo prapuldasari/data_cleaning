@@ -17,7 +17,7 @@ spark = SparkSession.builder.appName('unit_test').getOrCreate()
 df = spark.read.csv('/Users/pk/Downloads/threshold_test_data.csv', header=True, inferSchema=True)
 
 
-class TestThresholdunit(unittest.TestCase):
+class TestAdd6(unittest.TestCase):
     def __init__(self,Target=None, Probability='prop', prediction_col='prediction'):
         #         self.df= get_data()
         
@@ -37,15 +37,15 @@ class TestThresholdunit(unittest.TestCase):
         self.MaxMisclassification_tolerence = self.threshold.MaxMisclassification_tolerence
 
     def values(self):
-        assert self.df_threshold.collect()[0]['L1-Threshold'] < self.df_threshold.collect()[0]['L2-Threshold']
+        self.assert self.df_threshold.collect()[0]['L1-Threshold'] < self.df_threshold.collect()[0]['L2-Threshold']
 
     def test_thresholds(self):
-        assert self.df_threshold.collect()[0]['L1-Threshold'] == 0.41, "Should be 0.41"
-        assert self.df_threshold.collect()[0]['L2-Threshold'] == 0.71, "Should be 0.71"
+        self.assert self.df_threshold.collect()[0]['L1-Threshold'] == 0.41, "Should be 0.41"
+        self.assert self.df_threshold.collect()[0]['L2-Threshold'] == 0.71, "Should be 0.71"
 
     def check_values(self):
-        assert (df.filter(col(self.Probability) <= self.df_threshold.collect()[0]['L1-Threshold']).count() >= 0.4)
+        self.assert (df.filter(col(self.Probability) <= self.df_threshold.collect()[0]['L1-Threshold']).count() >= 0.4)
         df_new = self.df.filter(col(self.Probability) <= self.df_threshold.collect()[0]['L1-Threshold'])
         miss_count = df_new.filter(col('Target') == 1).count()
         miss_c = miss_count / self.df.count()
-        assert (miss_c <= self.MaxMisclassification_tolerence)
+        self.assert (miss_c <= self.MaxMisclassification_tolerence)
