@@ -25,7 +25,9 @@ class Thresholdunit(unittest.TestCase):
                                          buckets=10, MaxMisclassification_tolerence_local=None, NeedComputation=True,
                                          regulater_factor=0.0001, Target='Target', Probability='prop',
                                          recall_limit=0.75, prediction_col='prediction')
-        self.spark = spark
+        self.spark = SparkSession.builder.appName('unit_test').getOrCreate()
+        print ('---debug')
+        print (self.spark)
         self.df_threshold = self.threshold.get_ProbThrehold_byBadRateDistribution()
         self.df = df
         self.Probability = self.threshold.Probability
