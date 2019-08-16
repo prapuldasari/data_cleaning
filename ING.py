@@ -169,15 +169,3 @@ except IOError:
 	config = json.loads(config_string)
 
 globals().update(config)
-© 2019 GitHub, Inc.
-Terms
-Privacy
-Security
-Status
-Help
-Contact GitHub
-Pricing
-API
-Training
-Blog
-About
