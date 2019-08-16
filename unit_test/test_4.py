@@ -18,14 +18,16 @@ df = spark.read.csv('/Users/pk/Downloads/threshold_test_data.csv', header=True, 
 
 
 class Thresholdunit(unittest.TestCase):
-    def __init__(self, spark=spark, Target=None, Probability='prop', prediction_col='prediction'):
+    def __init__(self,Target=None, Probability='prop', prediction_col='prediction'):
         #         self.df= get_data()
-        self.threshold = ThresholdTuning(spark=spark, dataframe=df, MaxMisclassification_tolerence=0.04,
+        
+        
+        self.spark = SparkSession.builder.appName('unit_test').getOrCreate()
+        self.threshold = ThresholdTuning(spark=self.spark, dataframe=df, MaxMisclassification_tolerence=0.04,
                                          expected_FalseAlertReduction=0.4,
                                          buckets=10, MaxMisclassification_tolerence_local=None, NeedComputation=True,
                                          regulater_factor=0.0001, Target='Target', Probability='prop',
                                          recall_limit=0.75, prediction_col='prediction')
-        self.spark = SparkSession.builder.appName('unit_test').getOrCreate()
         print ('---debug')
         print (self.spark)
         self.df_threshold = self.threshold.get_ProbThrehold_byBadRateDistribution()
