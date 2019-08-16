@@ -17,7 +17,7 @@ spark = SparkSession.builder.appName('unit_test').getOrCreate()
 df = spark.read.csv('/Users/pk/Downloads/threshold_test_data.csv', header=True, inferSchema=True)
 
 
-class Thresholdunit(unittest.TestCase):
+class TestThresholdunit(unittest.TestCase):
     def __init__(self,Target=None, Probability='prop', prediction_col='prediction'):
         #         self.df= get_data()
         
