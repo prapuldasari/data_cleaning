@@ -11,6 +11,7 @@ class TestAdd4(unittest.TestCase):
         Test that the addition of two integers returns the correct total
         """
         result = 1+2
+        print (result)
         self.assertEqual(result, 3)
 
     def test_add_floats4(self):
