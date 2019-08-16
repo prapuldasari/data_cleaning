@@ -9,7 +9,7 @@ import inspect
 print (sys.path)
 print (__all__)
 
-for loader, name, is_pkg in pkgutil.walk_packages(['/Users/pk/.jenkins/workspace/testing_sh/tm']):
+for loader, name, is_pkg in pkgutil.walk_packages(['/Users/pk/.jenkins/workspace/testing_sh/tm', '/Users/pk/.jenkins/workspace/testing_sh/ns']):
     print ('hereer')
     module = loader.find_module(name).load_module(name)
     print ('here 1', module)
