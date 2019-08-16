@@ -20,12 +20,12 @@ class ns_1(unittest.TestCase):
         result = 10.5+2
         self.assertEqual(result, 12.5)
 
-    def tes_ns_2_add_strings(self):
+    def test_ns_1_add_strings(self):
         """
         Test the addition of two strings returns the two string as one
         concatenated string
         """
-        result = 'abc' + 'def'
+        result = 'abc' + 'defadfdf'
         self.assertEqual(result, 'abcdef')
 
 if __name__ == '__main__':
