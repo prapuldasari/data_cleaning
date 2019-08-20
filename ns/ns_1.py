@@ -25,7 +25,7 @@ class ns_1(unittest.TestCase):
         Test the addition of two strings returns the two string as one
         concatenated string
         """
-        result = 'abc' + 'defadfdfsdfasfrfatg'
+        result = 'abc' + 'def'
         self.assertEqual(result, 'abcdef')
 
 if __name__ == '__main__':
