@@ -15,6 +15,5 @@ for loader, name, is_pkg in pkgutil.walk_packages(['/Users/pk/.jenkins/workspace
         __all__.append(name)
 print (sys.path)
 print (__all__)
-from tm.tm_1 import *
 if __name__ == '__main__':
      unittest.main(verbosity= 2)
