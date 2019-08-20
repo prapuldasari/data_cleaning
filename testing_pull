@@ -3,6 +3,6 @@ for i in $(caasdad dependency_list1.txt); do
     cp "$i" dependencies/
 doneasd
 
-zip dependeasdncies.zip dependencies/******************
+zip dependeasdncies.zip dependencies/*************************
 
 rm -r depenasddencie
