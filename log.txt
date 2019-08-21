@@ -27,10 +27,10 @@ Seen branch in repository origin/testing113
 Seen branch in repository origin/testting
 Seen 17 remote branches
  > git show-ref --tags -d # timeout=10
-Checking out Revision 75252977b3b3bb7d6f2cd983f4192aa0bd800fa4 (origin/master)
+Checking out Revision ca35b9137aff1deff32e84feb5bc23e6369add33 (origin/master)
  > git config core.sparsecheckout # timeout=10
- > git checkout -f 75252977b3b3bb7d6f2cd983f4192aa0bd800fa4
- > git rev-list --no-walk 5273bc1795b07ab6483dc3b4fb3888625916df3f # timeout=10
+ > git checkout -f ca35b9137aff1deff32e84feb5bc23e6369add33
+ > git rev-list --no-walk 75252977b3b3bb7d6f2cd983f4192aa0bd800fa4 # timeout=10
 + chmod +x run.sh
 + ./run.sh
 test_ns_1_add_floats (ns_1.ns_1) ... ok
